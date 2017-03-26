@@ -1,0 +1,6 @@
+#!/bin/bash
+
+ng build --target=production --environment=prod --output-path ../indoor/www/ --base-href .
+
+cd ../indoor
+cordova run browser
