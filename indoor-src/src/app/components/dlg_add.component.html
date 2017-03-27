@@ -1,8 +1,8 @@
 <h1 md-dialog-title>Agregar componente</h1>
-<md-dialog-content>
+<md-dialog-content class="host_dlg">
     <form (ngSubmit)="addComponent()">
         <md-input-container>
-            <input mdInput placeholder="IP" [(ngModel)]="host">
+            <input mdInput placeholder="IP" name="host_dlg" [(ngModel)]="data.host">
         </md-input-container>
     </form>    
     <md-dialog-actions>
