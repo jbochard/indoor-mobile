@@ -21,7 +21,9 @@ export class AppComponent {
   add_component() {
     let add_component_dlg = this.dialog.open(AddComponentDlg);
     add_component_dlg.afterClosed().subscribe(result => {
-      console.log(result);
+      if (result != undefined) {
+        this.components.push(result.host);
+      }
     });
   }
 }

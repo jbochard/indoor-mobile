@@ -1,12 +1,12 @@
 <h1 md-dialog-title>Agregar componente</h1>
 <md-dialog-content class="host_dlg">
-    <form (ngSubmit)="addComponent()">
+    <form>
         <md-input-container>
             <input mdInput placeholder="IP" name="host_dlg" [(ngModel)]="data.host">
         </md-input-container>
     </form>    
     <md-dialog-actions>
-        <button md-button color="primary" type="submit">Agregar</button>
+        <button md-raised-button color="primary" (click)="addComponent()">Agregar</button>
         <button md-button md-dialog-close>Cerrar</button>
     </md-dialog-actions>
 </md-dialog-content>
