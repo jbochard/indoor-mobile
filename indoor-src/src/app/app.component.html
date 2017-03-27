@@ -3,11 +3,9 @@
         <button md-icon-button (click)="add_component()">
             <md-icon svgIcon="add" class="md-24">Agregar</md-icon>
         </button>
-	    <md-nav-list>
-	        <a md-list-item href="page1.html">Page 1</a>
-	        <a md-list-item href="page2.html">Page 2</a>
-	        <a md-list-item href="page3.html">Page 3</a>
-	    </md-nav-list>
+        <md-nav-list *ngIf="components.length > 0">
+            <a md-list-item ng-repeat="c in components" href="page1.html">{{c}}</a>
+        </md-nav-list>
     </md-sidenav>
     <md-toolbar color="primary">
         <button md-icon-button (click)="sidenav.toggle()">
