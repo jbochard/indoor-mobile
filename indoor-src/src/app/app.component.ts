@@ -10,10 +10,9 @@ import { AddComponentDlg } 	from './components/dlg_add.component';
 })
 export class AppComponent {
 
-  public components: Array<any>;
+  components = [ ];
 
   constructor(public dialog: MdDialog, iconRegistry: MdIconRegistry, sanitizer: DomSanitizer) {
-    this.components = [  ];
     iconRegistry.addSvgIcon('menu', sanitizer.bypassSecurityTrustResourceUrl('assets/img/ic_apps_white_18px.svg'));
     iconRegistry.addSvgIcon('add',  sanitizer.bypassSecurityTrustResourceUrl('assets/img/ic_add_black_18px.svg'));
   }
@@ -22,7 +21,8 @@ export class AppComponent {
     let add_component_dlg = this.dialog.open(AddComponentDlg);
     add_component_dlg.afterClosed().subscribe(result => {
       if (result != undefined) {
-        this.components.push(result.host);
+        this.components.push(result);
+        console.log(this.components);
       }
     });
   }

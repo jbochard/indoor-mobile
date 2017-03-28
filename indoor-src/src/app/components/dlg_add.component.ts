@@ -14,6 +14,6 @@ export class AddComponentDlg {
   }
 
   addComponent() {
-    this.dialogRef.close(this.data);
+     this.dialogRef.close(this.data);
   }
 }
