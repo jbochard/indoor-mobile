@@ -23,6 +23,7 @@ export class SensorsComponent implements OnInit {
     ngOnInit() {
         this.route.params.switchMap((params: Params) => {
             this.host = params['host'];
+            console.log(this.host);
             this.heroService
                 .readSensors(this.host)
                 .then(result => this.sensors = result);
