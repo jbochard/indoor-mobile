@@ -1,4 +1,5 @@
 import { Component } 		              from '@angular/core';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { DomSanitizer } 		          from '@angular/platform-browser';
 import { MdIconRegistry, MdDialog } 	from '@angular/material';
 import { AddComponentDlg } 	from './components/dlg_add.component';
@@ -12,7 +13,12 @@ export class AppComponent {
 
   components = [ ];
 
-  constructor(public dialog: MdDialog, iconRegistry: MdIconRegistry, sanitizer: DomSanitizer) {
+  constructor(
+      public dialog: MdDialog, 
+      private route: ActivatedRoute,
+      private router: Router,
+      iconRegistry: MdIconRegistry, 
+      sanitizer: DomSanitizer) {
     iconRegistry.addSvgIcon('menu', sanitizer.bypassSecurityTrustResourceUrl('assets/img/ic_apps_white_18px.svg'));
     iconRegistry.addSvgIcon('add',  sanitizer.bypassSecurityTrustResourceUrl('assets/img/ic_add_black_18px.svg'));
   }
@@ -22,7 +28,7 @@ export class AppComponent {
     add_component_dlg.afterClosed().subscribe(result => {
       if (result != undefined) {
         this.components.push(result);
-        console.log(this.components);
+         this.router.navigate(['/sensors', { host: result.host }]);
       }
     });
   }

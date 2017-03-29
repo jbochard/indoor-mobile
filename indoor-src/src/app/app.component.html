@@ -9,7 +9,7 @@
             </md-toolbar-row>
         </md-toolbar>
         <md-nav-list *ngIf="components.length > 0">
-            <a md-list-item *ngFor="let c of components" href="views/panel.html?host={{c.host}}">{{c.host}}</a>
+            <a md-list-item *ngFor="let c of components" href="sensors?host={{c.host}}">{{c.host}}</a>
         </md-nav-list>
     </md-sidenav>
     <md-toolbar color="primary">
@@ -18,6 +18,6 @@
         </button>
     </md-toolbar>
     <div class="app-content">
-        Example Content area<br><br><br><br><br><br><br>
+        <router-outlet></router-outlet>
     </div>
 </md-sidenav-container>
