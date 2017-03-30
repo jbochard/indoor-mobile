@@ -1,4 +1,7 @@
 
+.app-sidenav {
+    height: 800px;
+}
 md-sidenav {
     width: 250px;
 }

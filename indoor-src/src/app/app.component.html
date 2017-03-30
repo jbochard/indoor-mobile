@@ -1,5 +1,5 @@
-<md-sidenav-container>
-    <md-sidenav #sidenav mode="push" class="app-sidenav">
+<md-sidenav-container class="app-sidenav">
+    <md-sidenav #sidenav mode="push">
         <div>
             <button md-icon-button (click)="add_component()">
                 <md-icon svgIcon="add" class="md-24">Agregar</md-icon>
@@ -7,15 +7,20 @@
             <span>&nbsp;Agregar componente</span>
         </div>
         <md-nav-list *ngIf="components.length > 0">
-            <a md-list-item *ngFor="let c of components" href="sensors;host={{c.host}}">{{c.host}}</a>
-        </md-nav-list>
+            <md-list-item *ngFor="let c of components">
+                <a md-line href="sensors;host={{c.host}}">{{ c.host }}</a>
+                <button md-icon-button (click)="showInfo(link)">
+                    <md-icon>info</md-icon>
+                </button>
+            </md-list-item>
+         </md-nav-list>
     </md-sidenav>
     <md-toolbar color="primary">
         <button md-icon-button (click)="sidenav.toggle()">
             <md-icon svgIcon="menu" class="md-24">menu</md-icon>
         </button>
     </md-toolbar>
-    <div class="app-content">
+    <div>
         <router-outlet></router-outlet>
     </div>
 </md-sidenav-container>

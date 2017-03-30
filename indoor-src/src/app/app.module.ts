@@ -8,6 +8,7 @@ import { MaterialModule } from '@angular/material';
 
 import { AppComponent }     from './app.component';
 import { SensorsService } from './sensors.service';
+import { MobileService } from './mobile.service';
 import { SensorsComponent } from './sensors.component';
 import { AddComponentDlg } 	from './components/dlg_add.component';
 
@@ -29,7 +30,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes)
   ],
   entryComponents: [AddComponentDlg],
-  providers: [ SensorsService ],
+  providers: [ SensorsService, MobileService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

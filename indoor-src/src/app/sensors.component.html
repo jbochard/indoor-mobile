@@ -1,1 +1,38 @@
-Sensores
+<h1>Componente: {{host}}</h1>
+<md-grid-list cols="2" gutterSize="10px" rowHeight="200px">
+    <md-grid-tile *ngFor="let s of sensors; let i = index">
+        <md-card [ngClass]="{'enable-card': s.enable, 'disable-card': !s.enable}">
+            <md-card-header>             
+                 <md-card-title class="card-title">{{s.name}}</md-card-title>
+                 <button md-icon-button (click)="enable('SENSOR', i)" mdTooltip="Habilitar"> 
+                    <md-icon *ngIf="!s.enable" svgIcon="syncOn" class="md-18"></md-icon>
+                    <md-icon *ngIf="s.enable" svgIcon="syncOff" class="md-18"></md-icon>
+                 </button>
+            </md-card-header>
+            <md-card-content class="card-value">
+                {{s.value}}
+            </md-card-content>
+        </md-card>
+    </md-grid-tile>
+</md-grid-list>
+<br>
+<md-grid-list cols="2" gutterSize="10px" rowHeight="1:1">
+     <md-grid-tile *ngFor="let s of relays; let i = index">
+        <md-card [ngClass]="{'enable-card': s.enable, 'disable-card': !s.enable}">
+            <md-card-header>             
+                 <md-card-title class="card-title">{{s.name}}</md-card-title>
+                 <button md-icon-button (click)="enable('RELAY', i)" mdTooltip="Habilitar"> 
+                    <md-icon *ngIf="!s.enable" svgIcon="syncOn" class="md-18"></md-icon>
+                    <md-icon *ngIf="s.enable" svgIcon="syncOff" class="md-18"></md-icon>
+                 </button>                 
+                 <button md-icon-button (click)="manual(i)" mdTooltip="Manual"> 
+                    <md-icon *ngIf="!s.manual" svgIcon="hand" class="md-18"></md-icon>
+                    <md-icon *ngIf="s.manual" svgIcon="memory" class="md-18"></md-icon>
+                 </button> 
+            </md-card-header>
+            <md-card-content class="card-value">
+                {{s.value}}
+            </md-card-content>
+        </md-card>
+    </md-grid-tile>
+</md-grid-list>
