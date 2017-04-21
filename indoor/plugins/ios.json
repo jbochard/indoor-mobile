@@ -9,7 +9,14 @@
     "installed_plugins": {
         "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "uy.com.davinci.indoorMobile"
+        },
+        "cordova-plugin-file": {
+            "PACKAGE_NAME": "uy.com.davinci.indoorMobile"
         }
     },
-    "dependent_plugins": {}
+    "dependent_plugins": {
+        "cordova-plugin-compat": {
+            "PACKAGE_NAME": "uy.com.davinci.indoorMobile"
+        }
+    }
 }
