@@ -1,0 +1,15 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Controlador de indoor</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-tabs tabsPlacement="top">
+    <ion-tab [root]="sensors" tabTitle="Sensores"></ion-tab>
+    <ion-tab [root]="rules" tabTitle="Reglas"></ion-tab>
+  </ion-tabs>
+</ion-content>
