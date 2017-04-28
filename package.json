@@ -50,5 +50,8 @@
       "locator": "ios"
     }
   ],
-  "description": "indoor-mobile: An Ionic project"
+  "description": "indoor-mobile: An Ionic project",
+  "config": {
+    "ionic_source_map": "source-map"
+  }
 }

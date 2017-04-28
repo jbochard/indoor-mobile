@@ -10,13 +10,13 @@ import { RulesPage } from '../rules/rules';
   templateUrl: 'indoor-controller.html'
 })
 export class IndoorControllerPage {
-  selectedItem: any;
+  params: any;
   sensors;
   rules;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    // If we navigated to this page, we will have an item available as a nav param
-    this.selectedItem = navParams.get('controller');
+    console.log(this.navParams.data.controller);
+    this.params = this.navParams.data.controller;
     this.sensors = SensorsPage;
     this.rules = RulesPage;
   }
