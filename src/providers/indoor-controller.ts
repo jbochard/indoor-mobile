@@ -20,7 +20,7 @@ export class IndoorController {
             "name": "Temperatura",
             "type": "DHT22_TEMP",
             "port": 2,
-            "enable": false,
+            "enable": true,
             "manual": false,
             "value": this.getRandomInt(20, 30)
         });
@@ -28,7 +28,7 @@ export class IndoorController {
             "name": "Humedad",
             "type": "DHT22_HUM",
             "port": 2,
-            "enable": false,
+            "enable": true,
             "manual": false,
             "value": this.getRandomInt(60, 70)
         });
@@ -36,7 +36,7 @@ export class IndoorController {
             "name": "Relay1",
             "type": "RELAY",
             "port": 14,
-            "enable": false,
+            "enable": true,
             "manual": false,
             "value": 0
         });
@@ -52,7 +52,7 @@ export class IndoorController {
             "name": "Relay3",
             "type": "RELAY",
             "port": 13,
-            "enable": false,
+            "enable": true,
             "manual": false,
             "value": 0
         });
@@ -76,9 +76,27 @@ export class IndoorController {
             resolve(data);
         });
     }
+    
+    sensorEnable(sensor: any): Promise<any> {
+        return new Promise((resolve, reject) => {
+            resolve({ status: 'OK' })
+        });
+    }
 
-   private getRandomInt(min: number, max: number) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
+    relayValue(relay: any): Promise<any> {
+        return new Promise((resolve, reject) => {
+            resolve({ status: 'OK' })
+        });
+    }
+
+    relayManual(relay: any): Promise<any> {
+        return new Promise((resolve, reject) => {
+            resolve({ status: 'OK' })
+        });
+    }
+
+    private getRandomInt(min: number, max: number) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
 
 }

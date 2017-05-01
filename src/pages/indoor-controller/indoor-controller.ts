@@ -11,11 +11,12 @@ import { RulesPage } from '../rules/rules';
 })
 export class IndoorControllerPage {
   params: any;
+  controller: string;
   sensors;
   rules;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    console.log(this.navParams.data.controller);
+    this.controller = this.navParams.data.controller.name;
     this.params = this.navParams.data.controller;
     this.sensors = SensorsPage;
     this.rules = RulesPage;

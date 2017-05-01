@@ -6,23 +6,54 @@
 -->
 <ion-content padding class="card-background-page">
   <ion-grid>
+    <ion-row style="margin-top: -15px">
+      <ion-col col-auto>
+            <ion-toggle [(ngModel)]="editMode"  (ionChange)="edit()" style="zoom: 0.5"></ion-toggle>
+      </ion-col>
+      <ion-col>
+             <div text-left style="padding-left: 5px;">{{ editMode ? 'Habilita/Deshabilita sensores y relays' : 'Pasar a modo edición' }}</div>
+      </ion-col>    
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid no-padding>
     <ion-row *ngFor="let row of sensors">
-      <ion-col width-33 *ngFor="let sensor of row">
-        <ion-card>
-          <img class="card-img" src="assets/img/green-square.png" />
-          <div class="card-title sensor">{{sensor.value}}</div>
+      <ion-col *ngFor="let sensor of row">
+        <ion-card (click)="enable(sensor)">
+          <div *ngIf="sensor.enable">
+            <img class="card-img" src="assets/img/green-square.png"/>
+          </div>
+          <div *ngIf="!sensor.enable">
+            <img class="card-img" src="assets/img/yellow-square.png"/>
+          </div>
+          <div class="card-sensor">{{sensor.value}}</div>
           <div class="card-subtitle">{{sensor_subtitle(sensor)}}</div>
         </ion-card>
       </ion-col>
     </ion-row>
   </ion-grid>
-  <ion-grid>
+  <ion-grid no-padding>
     <ion-row *ngFor="let row of relays">
-      <ion-col width-33 *ngFor="let relay of row">
+      <ion-col *ngFor="let relay of row">
         <ion-card>
-          <img class="card-img" src="assets/img/green-square.png" />
-          <div class="card-title sensor">{{relay.value}}</div>
-          <div class="card-subtitle">Relay</div>
+          <div *ngIf="relay.enable">
+            <img class="card-img" src="assets/img/green-square.png" (click)="enable(relay)"/>
+          </div>
+          <div *ngIf="!relay.enable">
+            <img class="card-img" src="assets/img/yellow-square.png" (click)="enable(relay)"/>
+          </div>          
+          <div *ngIf="!editMode" class="card-sensor">
+            <img class="card-switch" src="{{ relay.value == 1 ? 'assets/icon/switch_on.png': 'assets/icon/switch_off.png'}}" (click)="relay_switch(relay)"/>
+          </div>
+          <div *ngIf="!editMode">
+            <ion-icon *ngIf="relay.manual"  name="hand"        class="card-sm-manual"></ion-icon>
+            <ion-icon *ngIf="!relay.manual" name="cog-outline" class="card-sm-manual"></ion-icon>
+           </div>
+          <div *ngIf="editMode" class="card-sensor">
+            <ion-icon *ngIf="relay.manual"  name="hand"        class="card-manual" (click)="relay_manual(relay)"></ion-icon>
+            <ion-icon *ngIf="!relay.manual" name="cog-outline" class="card-manual" (click)="relay_manual(relay)"></ion-icon>
+          </div>
+          <div class="card-relay">{{relay.name}}</div>
         </ion-card>
       </ion-col>
     </ion-row>

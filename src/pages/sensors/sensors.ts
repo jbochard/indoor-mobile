@@ -22,7 +22,7 @@ export class SensorsPage implements OnDestroy {
   sensors: Array<Array<any>>;
   relays: Array<Array<any>>;
   columns = 2;
-  showDisabled = true;
+  editMode = false;
 
   constructor(
     public navCtrl: NavController, 
@@ -32,10 +32,7 @@ export class SensorsPage implements OnDestroy {
         this.relays = Array<Array<any>>();
         this.values = new Map<string, any>();
 
-        this.buildGrid(this.showDisabled);
-
-        this.timer = Observable.timer(2000,5000);
-        this.sub = this.timer.subscribe(t => this.updateSensors());
+        this.edit();
    }
 
    sensor_subtitle(sensor: any) {
@@ -62,7 +59,17 @@ export class SensorsPage implements OnDestroy {
     });      
   }
 
-  private buildGrid(showDisabled: boolean) {
+  private edit() {
+    if (this.editMode) {
+      this.sub.unsubscribe();
+      this.buildGrid();
+    } else {
+        this.timer = Observable.timer(2000,5000);
+        this.sub = this.timer.subscribe(t => this.updateSensors());
+        this.buildGrid();
+    }
+  }
+  private buildGrid() {
     this.indoorController
       .readSensors(this.navParams.data.ip)
       .then((data) => {
@@ -73,7 +80,7 @@ export class SensorsPage implements OnDestroy {
           let row_sensor = Array<any>();
           let row_relay = Array<any>();
           data.forEach(d => {
-            if (showDisabled || (!showDisabled && d.enable)) {
+            if (this.editMode || (!this.editMode && d.enable)) {
               if (d.type != "RELAY") {
                 if (i % this.columns == 0) {
                   row_sensor = Array<any>();
@@ -97,6 +104,36 @@ export class SensorsPage implements OnDestroy {
       });
   }
 
+  enable(sensor: any) {
+    if (this.editMode && this.values.has(sensor.port+sensor.type)) {
+      this.values.get(sensor.port+sensor.type).enable = ! sensor.enable;
+      this.indoorController
+        .sensorEnable(this.values.get(sensor.port+sensor.type))
+        .then((data) => {  });    
+    }       
+  }
+  
+
+  relay_switch(relay: any) {
+    if (relay.manual && this.values.has(relay.port+relay.type)) {
+      this.values.get(relay.port+relay.type).value = (relay.value + 1) % 2;
+      this.indoorController
+        .relayValue(this.values.get(relay.port+relay.type))
+        .then((data) => {  });    
+    }    
+  }
+
+  relay_manual(relay: any) {
+    if (this.values.has(relay.port+relay.type)) {
+      if (this.values.get(relay.port+relay.type).enable) {
+        this.values.get(relay.port+relay.type).manual = ! relay.manual;
+        this.indoorController
+          .relayManual(this.values.get(relay.port+relay.type))
+          .then((data) => {  });    
+      }       
+    }
+  }
+  
   ngOnDestroy(){
     this.sub.unsubscribe();
   }
