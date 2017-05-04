@@ -1,4 +1,28 @@
 {
+    "cordova-plugin-console": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-console@~1.0.5"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "cordova-plugin-device": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-device@1.1.4"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "ionic-plugin-keyboard": {
+        "source": {
+            "type": "registry",
+            "id": "ionic-plugin-keyboard@~2.2.1"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
     "cordova-plugin-whitelist": {
         "source": {
             "type": "registry",
@@ -15,22 +39,6 @@
         "is_top_level": true,
         "variables": {}
     },
-    "cordova-plugin-console": {
-        "source": {
-            "type": "registry",
-            "id": "cordova-plugin-console@1.0.5"
-        },
-        "is_top_level": true,
-        "variables": {}
-    },
-    "cordova-plugin-device": {
-        "source": {
-            "type": "registry",
-            "id": "cordova-plugin-device@1.1.4"
-        },
-        "is_top_level": true,
-        "variables": {}
-    },
     "cordova-plugin-splashscreen": {
         "source": {
             "type": "registry",
@@ -39,18 +47,10 @@
         "is_top_level": true,
         "variables": {}
     },
-    "ionic-plugin-keyboard": {
-        "source": {
-            "type": "registry",
-            "id": "ionic-plugin-keyboard@~2.2.1"
-        },
-        "is_top_level": true,
-        "variables": {}
-    },
     "cordova-sqlite-storage": {
         "source": {
             "type": "registry",
-            "id": "cordova-sqlite-storage"
+            "id": "cordova-sqlite-storage@~2.0.3"
         },
         "is_top_level": true,
         "variables": {}

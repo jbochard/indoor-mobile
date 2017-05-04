@@ -13,19 +13,19 @@
         "cordova-plugin-device": {
             "PACKAGE_NAME": "com.ionicframework.indoorionic779305"
         },
-        "cordova-plugin-splashscreen": {
-            "PACKAGE_NAME": "com.ionicframework.indoorionic779305"
-        },
-        "cordova-plugin-statusbar": {
+        "ionic-plugin-keyboard": {
             "PACKAGE_NAME": "com.ionicframework.indoorionic779305"
         },
         "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "com.ionicframework.indoorionic779305"
         },
-        "cordova-sqlite-storage": {
+        "cordova-plugin-statusbar": {
             "PACKAGE_NAME": "com.ionicframework.indoorionic779305"
         },
-        "ionic-plugin-keyboard": {
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "com.ionicframework.indoorionic779305"
+        },
+        "cordova-sqlite-storage": {
             "PACKAGE_NAME": "com.ionicframework.indoorionic779305"
         }
     },

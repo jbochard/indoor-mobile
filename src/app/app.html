@@ -7,10 +7,18 @@
   </ion-header>
 
   <ion-content>
+    <div style="float: right">
+      <button ion-button color="secondary" icon-right small clear icon-only (click)="addPage()">
+        <span style="color: black">Agregar</span>
+        <ion-icon name='add-circle'>
+        </ion-icon>
+      </button>    
+    </div>
     <ion-list>
-      <button ion-item *ngFor="let c of (controllers | async)" (click)="openPage(c)">
-        {{c.name}}
-      </button>
+      <ion-item *ngFor="let c of controllers">
+        <dt (click)="openPage(c)">{{c.name}}</dt>
+        <img src="assets/icon/remove.png" item-right style="zoom: 0.3" (click)="removePage(c)" />
+      </ion-item>
     </ion-list>
   </ion-content>
 

@@ -16,6 +16,7 @@ export class IndoorControllerPage {
   rules;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    console.log(navParams);
     this.controller = this.navParams.data.controller.name;
     this.params = this.navParams.data.controller;
     this.sensors = SensorsPage;
