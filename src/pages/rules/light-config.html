@@ -1,0 +1,28 @@
+<ion-content padding>
+    <ion-grid>
+        <ion-row>
+            <ion-col>
+                <ion-list>
+                    <ion-item no-lines>
+                        <ion-label stacked>Horas para crecimiento</ion-label>
+                        <ion-input type="number" [(ngModel)]="rules.lightRule.growingHours" placeholder="Horas de luz en crecimiento" (ngModelChange)="changeGrowingHours()"></ion-input>
+                    </ion-item>
+                    <ion-item no-lines>
+                        <ion-label stacked>Horas para floración</ion-label>
+                        <ion-input type="number" disabled [ngModel]="rules.lightRule.floweringHours" placeholder="Horas de luz en floración"></ion-input>
+                    </ion-item>
+                    <ion-item no-lines>
+                        <ion-label stacked>Hora de inicio</ion-label>
+                        <ion-input type="number" [(ngModel)]="rules.lightRule.lightInit" placeholder="Hora de encendido"></ion-input>
+                    </ion-item>
+                 </ion-list>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col>
+                <button ion-button (click)="apply()"    round>Aplicar</button>
+                <button ion-button (click)="return()"   round outline>Volver</button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

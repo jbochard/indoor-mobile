@@ -12,6 +12,9 @@ import { MainPage } from '../pages/main/main';
 import { IndoorControllerPage } from '../pages/indoor-controller/indoor-controller';
 import { SensorsPage } from '../pages/sensors/sensors';
 import { RulesPage } from '../pages/rules/rules';
+import { LightConfigPage } from '../pages/rules/light-config';
+import { ClockPage } from '../pages/clock/clock';
+import { RuleManager } from '../providers/rules';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -22,6 +25,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     MainPage,
     SensorsPage,
     RulesPage,
+    ClockPage,
+    LightConfigPage,
     IndoorControllerPage
   ],
   imports: [
@@ -34,14 +39,17 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   entryComponents: [
     IonicMobile,
     MainPage,
+    LightConfigPage,
     SensorsPage,
     RulesPage,
+    ClockPage,
     IndoorControllerPage
   ],
   providers: [
     IndoorController,  
     IndoorDB,  
     StatusBar,
+    RuleManager,
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]

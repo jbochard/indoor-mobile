@@ -11,8 +11,19 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class IndoorController {
 
+    clock;
+
     constructor(public http: Http) {
+        this.clock = {
+            year: 2017,
+            month: 5,
+            day: 1,
+            hour: 20,
+            minute: 24,
+            second: 10
+        };
     }
+
 
     readSensors(host: string): Promise<Array<any>> {
         let data = Array<any>();
@@ -95,39 +106,34 @@ export class IndoorController {
         });
     }
 
-    readClock(host: string): Promise<Array<any>> {
-        let data = Array<any>();
-        data.push({
-            "year": 2017,
-            "month": 5,
-            "day": 1,
-            "hour": 10,
-            "minute": 21,
-            "second": 10
-        });
-        return new Promise((resolve, reject) => {
-            resolve(data);
+    readClock(host: string): Promise<any> {
+        return new Promise((resolve) => {
+            this.clock.second = (this.clock.second + 1) % 60;
+            resolve(this.clock);
         });
     }
 
     // http://192.168.1.5/hardware/clock?year=2017&month=3&day=13&hour=19
-    writeClock(host: string): Promise<any> {
-        return new Promise((resolve, reject) => {
+    writeClock(host: string, clock: any): Promise<any> {
+        let url = "http://"+host+"/hardware/clock?year="+clock.year+"&month="+clock.month+"&day="+clock.day+"&hour="+clock.hour+"&minute="+clock.minute+"&second="+clock.second;
+        console.log(url);
+        return new Promise((resolve) => {
             resolve({ status: 'OK' });
         });
     }
 
     readRules(host: string): Promise<Array<any>> {
         let data = Array<any>();
-        data.push("if Temperatura >= 20 then on(Relay1)");
-        data.push("if  hora_actual >= 0 and hora_actual <= 18 then on(Relay1) else off(Relay1)");  
-        return new Promise((resolve, reject) => {
+        data.push({ name: 'lightConfig', params: { lightHours: 18, growingHours:18, floweringHours: 12, lightInit: 0, lightRelay: 'Relay1' }, rule: "if  hora_actual >= 0 and hora_actual <= 18 then on(Relay1) else off(Relay1)" });
+        data.push({ name: 'temperatureConfig', params: { tempStart: 30 }, rule: "if  hora_actual >= 0 and hora_actual <= 18 then on(Relay1) else off(Relay1)" });
+        data.push({ name: 'humidityConfig', params: { humidityStart: 70 }, rule: "if  hora_actual >= 0 and hora_actual <= 18 then on(Relay1) else off(Relay1)" });
+        return new Promise((resolve) => {
             resolve(data);
         });
     }
 
     // http://192.168.1.5/rules?rule=if  hora_actual >= 0 and hora_actual <= 18 then on(Relay1) else off(Relay1)
-    writeRule(host:string, rule: string): Promise<any> {
+    writeRule(host:string, rule: any): Promise<any> {
         return new Promise((resolve, reject) => {
             resolve({ status: 'OK' });
         });

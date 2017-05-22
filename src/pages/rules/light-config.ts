@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { Rules, RuleManager } from '../../providers/rules';
-import { LightConfigPage } from './light-config';
+import { LightConfig, Rules, RuleManager } from '../../providers/rules';
 
 /**
  * Generated class for the Rules page.
@@ -10,25 +9,23 @@ import { LightConfigPage } from './light-config';
  * on Ionic pages and navigation.
  */
 @Component({
-  selector: 'page-rules',
-  templateUrl: 'rules.html',
+  selector: 'page-light-config',
+  templateUrl: 'light-config.html',
 })
-export class RulesPage {
+export class LightConfigPage {
 
   rules: Rules;
-
   lightConfigPage: any;
-  lightConfigParams: any;
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
     public ruleManager: RuleManager) { 
+
       this.lightConfigPage = LightConfigPage;
-      this.lightConfigParams = this.navParams.data;
-      
+
       this.ruleManager.readRules(this.navParams.data.ip)
-      .then(r => {
-        this.rules = r;
+      .then(rules => {
+        this.rules = rules;
       });
     }
 
@@ -36,11 +33,19 @@ export class RulesPage {
       this.ruleManager.changeFlowering(this.navParams.data.ip, this.rules.lightConfig.flowering);
     }
 
-    changeTemperature() {
-      this.ruleManager.changeTemperature(this.navParams.data.ip, this.rules.temperatureConfig.tempStart);      
+    changeGrowingHours() {
+      console.log('change');
+      this.rules.lightConfig.floweringHours = 24 - this.rules.lightConfig.growingHours;
     }
 
-    changeHumidity() {
-      this.ruleManager.changeHumidity(this.navParams.data.ip, this.rules.humidityConfig.humidityStart);      
+    apply() {
+      this.ruleManager.writeRules(this.navParams.data.ip, this.rules)
+      .then( res => {
+        this.navCtrl.pop();
+      });
+    }
+
+    return() {
+      this.navCtrl.pop();
     }
 }

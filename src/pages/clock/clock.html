@@ -1,0 +1,32 @@
+<!--
+  Generated template for the Rules page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-content padding>
+    <div *ngIf="!clock_edit">
+      <div class="clock-panel">
+        <span>{{("00"+clock?.hour).slice(-2)}}:{{("00"+clock?.minute).slice(-2)}}:{{("00"+clock?.second).slice(-2)}}</span>
+      </div>
+      <div class="date-panel">
+        <span>{{("00"+clock?.day).slice(-2)}}-{{("00"+clock?.month).slice(-2)}}-{{("0000"+clock?.year).slice(-4)}}</span>
+      </div>
+    </div>
+    <div *ngIf="clock_edit">
+      <div class="clock-panel">
+        <input type="hour"    class="clock-edit-2"  [(ngModel)]="clock.hour" size="2"><span>:</span>
+        <input type="minute"  class="clock-edit-2"  [(ngModel)]="clock.minute" size="2"><span>:</span>
+        <input type="second"  class="clock-edit-2"  [(ngModel)]="clock.second" size="2">
+      </div>
+      <div class="date-panel">
+        <input type="day"    class="date-edit-2"  [(ngModel)]="clock.day"    size="2"><span>-</span>
+        <input type="monty"  class="date-edit-2"  [(ngModel)]="clock.month"  size="2"><span>-</span>
+        <input type="year"   class="date-edit-2"  [(ngModel)]="clock.year"   size="4">        
+      </div>
+    </div>    
+    <ion-fab center middle>
+      <button *ngIf="!clock_edit" ion-fab color="secondary" (click)="edit()"><ion-icon name="create"></ion-icon></button>
+      <button *ngIf="clock_edit" ion-fab color="danger"  (click)="update()"><ion-icon name="create"></ion-icon></button>
+  </ion-fab>
+</ion-content>

@@ -9,7 +9,8 @@
 
 <ion-content>
   <ion-tabs tabsPlacement="top">
+    <ion-tab [root]="rules"   tabTitle="Reglas"   [rootParams]="params"></ion-tab>
     <ion-tab [root]="sensors" tabTitle="Sensores" [rootParams]="params"></ion-tab>
-    <ion-tab [root]="rules" tabTitle="Reglas" [rootParams]="params"></ion-tab>
+    <ion-tab [root]="clock"   tabTitle="Reloj"    [rootParams]="params"></ion-tab>
   </ion-tabs>
 </ion-content>

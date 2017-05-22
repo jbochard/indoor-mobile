@@ -1,0 +1,38 @@
+page-clock {
+
+    .clock-panel {
+        margin-top: 25px;
+        margin-left: 10px;
+        margin-right: 10px;        
+        font-family: digital7;
+        font-size: 4em;
+        text-align: center;
+        background: beige;
+        padding: 10px;        
+    }
+
+    .date-panel {
+        margin-left: 10px;
+        margin-right: 10px;        
+        font-family: roboto;
+        font-size: 1.5em;
+        text-align: center;
+        color: white;
+        background: slategrey;
+        padding: 10px;
+        font-weight: bold;
+    }
+
+    .clock-edit-2 {
+        margin-left: -15px;     
+        text-align: right;
+        font-size: 0.8em;
+    }
+
+    .date-edit-2 {
+        margin-left: -5px; 
+        color: black;    
+        text-align: right;
+        font-size: 0.8em;
+    }
+}
